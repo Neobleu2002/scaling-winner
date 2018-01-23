@@ -1,0 +1,53 @@
+<!-- This is mine, i am parker.
+created on Jan 18, 2018
+-->
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Google Map</h1>
+
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<script>
+function myMap(lat,long,zm) {
+
+if (lat == null){
+  lat = 51.508742;
+}
+if (long == null){
+  long = -0.120850;
+}
+if (zm == null){
+  zm = 12
+}
+  var mapProp= {
+    center:new google.maps.LatLng(lat,long),
+    zoom:zm,
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var marker = new google.maps.Marker({position: mapProp.center});
+  marker.setMap(map);
+}
+function takeMeTo(place) {
+  if (place == "Memphis") {
+    myMap(35.1495, -90.0490, 20);
+  }else if (place == "Iceland"){
+     myMap(64.9631,-19.0208)
+  }else if(place == "N'Djamena"){
+    myMap(12.1348, 15.0557)
+  }else if(place == "InaccessibleIsland"){
+      myMap(-37.3004, -12.6733)
+    }
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBFtsJPU6qp3ZhzCL05vsqw9eRxA1AyPo&callback=myMap"></script>
+<select onchange="takeMeTo(this.value)">
+  <option value="Memphis">Memphis</option>
+  <option value="Iceland">Iceland</option>
+  <option value="N'Djamena">N'Djamena</option>
+  <option value="InaccessibleIsland">Inaccessible Island</option>
+</select>
+</body>
+</html>
